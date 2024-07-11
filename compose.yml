@@ -1,0 +1,18 @@
+version: '3.8'  # It's good practice to specify the version
+
+services:
+  db:
+    image: "postgres:latest"
+    restart: "unless-stopped"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${JOURNEY_DATABASE_USER}
+      POSTGRES_DB: ${JOURNEY_DATABASE_NAME}
+      POSTGRES_PASSWORD: ${JOURNEY_DATABASE_PASSWORD}
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+    driver: local
